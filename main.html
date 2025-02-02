@@ -3,23 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create a table</title>
-	<style type="text/css">
-		body {margin:30px;}
-		</style>
-	<link rel="stylesheet" href="styles.css>
+  <title>Create a Table</title>
+  <style type="text/css">
+    body {
+      margin: 30px;
+      font-family: Arial, sans-serif;
+    }
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    td {
+      padding: 10px;
+      border: 1px solid #333;
+    }
+  </style>
 </head>
 <body>
+  <h1>Create a Table</h1>
   
-  <table id="myTable" border="1">
-</table>
-	<form>
-		<input type="button" onclick="createTable()" value="Create the table">
-		
-	</form>
+  <table id="myTable" border="1"></table>
+  
+  <form>
+    <input type="button" onclick="createTable()" value="Create the Table">
+  </form>
 
-  <script type="text/javascript"n src="script.js">
-	  
+  <script type="text/javascript">
+    function createTable() {
+      let rn = window.prompt("Input number of rows:");
+      if (rn === null || rn.trim() === "" || isNaN(rn) || rn <= 0) {
+        alert("Please enter a valid positive number for rows.");
+        return;
+      }
+
+      let cn = window.prompt("Input number of columns:");
+      if (cn === null || cn.trim() === "" || isNaN(cn) || cn <= 0) {
+        alert("Please enter a valid positive number for columns.");
+        return;
+      }
+
+      rn = Number(rn);
+      cn = Number(cn);
+      let table = document.getElementById("myTable");
+      table.innerHTML = ""; // Clear previous table contents
+
+      for (let i = 0; i < rn; i++) {
+        const row = table.insertRow();
+        for (let j = 0; j < cn; j++) {
+          let cell = row.insertCell();
+          cell.textContent = `Row-${i + 1} Column-${j + 1}`;
+        }
+      }
+    }
   </script>
 </body>
 </html>

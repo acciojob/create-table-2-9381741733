@@ -1,20 +1,26 @@
 function createTable() {
-  // Get table element by ID
+  // Get the table element by ID
   const table = document.getElementById("myTable");
-  
-  // Clear any existing table content
+
+  // Clear any existing content in the table
   table.innerHTML = "";
 
-  // Get the number of rows and columns from the user
-  const rows = parseInt(prompt("Input number of rows"));
-  const columns = parseInt(prompt("Input number of columns"));
+  // Prompt for number of rows
+  const rn = parseInt(prompt("Input number of rows"));
+  const cn = parseInt(prompt("Input number of columns"));
 
-  // Generate the table rows and columns
-  for (let i = 0; i < rows; i++) {
-    const row = table.insertRow(); // Create a new row
-    for (let j = 0; j < columns; j++) {
-      const cell = row.insertCell(); // Create a new cell
-      cell.textContent = `Row-${i} Column-${j}`; // Set the cell content
+  // Validate user input
+  if (isNaN(rn) || isNaN(cn) || rn <= 0 || cn <= 0) {
+    alert("Please enter valid positive numbers for rows and columns.");
+    return;
+  }
+
+  // Create rows and columns with text
+  for (let i = 0; i < rn; i++) {
+    const row = table.insertRow();
+    for (let j = 0; j < cn; j++) {
+      const cell = row.insertCell();
+      cell.textContent = `Row-${i} Column-${j}`;
     }
   }
 }
